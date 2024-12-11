@@ -12,9 +12,6 @@ DEFAULTS_FILE="/etc/sing-box/defaults.conf"
 # 获取当前模式
 MODE=$(grep -oP '(?<=^MODE=).*' /etc/sing-box/mode.conf)
 
-# 停止 sing-box 服务
-systemctl stop sing-box
-
 # 提示用户是否更换订阅
 read -rp "是否更换订阅地址？(y/n): " change_subscription
 if [[ "$change_subscription" =~ ^[Yy]$ ]]; then
@@ -84,14 +81,20 @@ fi
 FULL_URL="${BACKEND_URL}/config/${SUBSCRIPTION_URL}&file=${TEMPLATE_URL}"
 echo "生成完整订阅链接: $FULL_URL"
 
+# 备份现有配置文件
+[ -f "/etc/sing-box/config.json" ] && cp /etc/sing-box/config.json /etc/sing-box/config.json.backup
+
 # 下载并验证配置文件
 if curl -L --connect-timeout 10 --max-time 30 "$FULL_URL" -o /etc/sing-box/config.json; then
     echo "配置文件下载完成，并验证成功！"
     if ! sing-box check -c /etc/sing-box/config.json; then
-        echo "配置文件验证失败"
-        exit 1
+        echo "配置文件验证失败，恢复备份..."
+        [ -f "/etc/sing-box/config.json.backup" ] && cp /etc/sing-box/config.json.backup /etc/sing-box/config.json
     fi
 else
-    echo "配置文件下载失败"
-    exit 1
+    echo "配置文件下载失败，恢复备份..."
+    [ -f "/etc/sing-box/config.json.backup" ] && cp /etc/sing-box/config.json.backup /etc/sing-box/config.json
 fi
+
+# 重启 sing-box 服务
+systemctl restart sing-box
