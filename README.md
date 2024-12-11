@@ -1,42 +1,42 @@
-# sbshell
+# Sbshell
 
-**sing-box 全自动脚本:**  
+Sbshell 是一款针对 官方sing-box 的辅助运行脚本，旨在解决官方sing-box的使用不便：
+
+- **辅助运行**：保持 sing-box 以官方裸核形式运行，追求极致精简与性能。
+- **双模支持**：兼容 TUN 和 TProxy 模式，可随时一键切换，灵活适应不同需求。
+- **版本管理**：支持一键切换稳定版与测试版内核，检测并更新至最新版本，操作简单高效。
+- **灵活配置**：支持手动输入后端地址、订阅链接、配置文件链接，并可设置默认值，提升使用效率。
+- **订阅管理**：支持手动更新、定时自动更新，确保订阅和配置始终保持最新。
+- **启动控制**：支持手动启动、停止和开机自启管理，操作直观。
+- **网络配置**：内置网络配置模块，可快速修改系统 IP、网关和 DNS，自动提示是否需要调整。
+- **便捷命令**：集成常用命令，避免手动查找与复制的繁琐。
+- **在线更新**：支持脚本在线更新，始终保持最新版本。
+
+## 设备支持：
+
+目前支持系统为deiban/ubuntu/armbian, 后续有时间可能会适配openwrt。
+
+## 一键脚本：
 ```
 bash <(curl -sL https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/sbshall.sh)
 ```
-目前支持系统为deiban/ubuntu/armbian, 后续有时间可能会去支持openwrt  
+（初始化运行结束，输入“**sb**”进入菜单）
+目前支持系统为deiban/ubuntu/armbian, 后续有时间可能会去支持openwrt 。
 
-测试版：  
-tproxy模式配置文件地址：https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tproxy_dev.json  
+## 适配配置文件：
 
-tun模式配置文件地址：https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tun_dev.json  
+### 测试版：  
+tproxy：
+https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tproxy_dev.json  
+tun：
+https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tun_dev.json  
 
-稳定版：  
-tproxy模式配置文件地址：https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tproxy.json  
+### 稳定版：  
+tproxy：
+https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tproxy.json  
+tun：
+https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tun.json  
 
-tun模式配置文件地址：https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tun.json  
+## 其他问题：
 
-**使用说明**：输入 sb  进入菜单  
-
-**菜单：**
-1. Tproxy/Tun模式切换
-2. 手动更新配置文件
-3. 自动更新配置文件
-4. 手动启动 sing-box
-5. 手动停止 sing-box
-6. 安装/更新 sing-box
-7. 修改默认配置参数
-8. 设置自启动
-9. 网络设置
-10. 常用命令
-11. 更新脚本
-0. 退出
-
-
-**注意事项**：
-- 使用脚本需要root登录ssh，如普通用户登录再切换可能会有问题。
-- 默认为禁用开机自启动，可在菜单中开启自启动，如果禁用自启动需要重启。
-- 默认后端、订阅、规则 需要在菜单中自行设置。
-- 如果使用自己的配置文件需要注意tproxy配置文件中需要定义两个参数和脚本中一致：  
-  入站中的tproxy监听端口必须为：`"listen_port": 7895,`，route模块必须添加mark标记：`"default_mark": 666,`
-  
+**请查看[wiki](https://github.com/qichiyuhub/sbshell/wiki)**
