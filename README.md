@@ -27,13 +27,13 @@ bash <(curl -sL https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbsh
 
 ### 测试版：  
 tproxy：
-https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tproxy_dev.json  
+https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tproxy_dev.json    
 tun：
 https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tun_dev.json  
 
 ### 稳定版：  
 tproxy：
-https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tproxy.json  
+https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tproxy.json    
 tun：
 https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tun.json  
 
