@@ -5,38 +5,6 @@ CYAN='\033[0;36m'
 RED='\033[0;31m'
 NC='\033[0m' # 无颜色
 
-# 脚本下载目录
-SCRIPT_DIR="/etc/sing-box/scripts"
-
-# 检测是否处于科学环境的函数
-function check_network() {
-    echo -e "${CYAN}检测是否处于科学环境...${NC}"
-    STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 5 "https://www.google.com")
-
-    if [ "$STATUS_CODE" -eq 200 ]; then
-        echo -e "${CYAN}当前处于代理环境${NC}"
-        return 0
-    else
-        echo -e "${RED}当前不在科学环境下，请配置正确的网络后重试!${NC}"
-        return 1
-    fi
-}
-
-# 初次检测网络环境
-if ! check_network; then
-    read -rp "是否执行网络更改脚本？(y/n): " network_choice
-    if [[ "$network_choice" =~ ^[Yy]$ ]]; then
-        bash "$SCRIPT_DIR/set_network.sh"
-        # 再次检测网络环境
-        if ! check_network; then
-            echo -e "${RED}网络配置更改后依然不在科学环境下，请检查网络配置!${NC}"
-            exit 1
-        fi
-    else
-        exit 1
-    fi
-fi
-
 # 检查 sing-box 是否已安装
 if command -v sing-box &> /dev/null; then
     echo -e "${CYAN}sing-box 已安装，跳过安装步骤${NC}"
@@ -53,7 +21,7 @@ else
 
     # 提示用户是否升级系统
     while true; do
-        read -rp "是否升级系统？(y/n): " upgrade_choice
+        read -rp "是否升级系统？(y/n/skip): " upgrade_choice
         case $upgrade_choice in
             [Yy]*)
                 echo "正在升级系统，请稍候..."
@@ -63,6 +31,10 @@ else
                 ;;
             [Nn]*)
                 echo "跳过系统升级。"
+                break
+                ;;
+            [Ss]*)
+                echo "跳过系统升级，继续下一步。"
                 break
                 ;;
             *)

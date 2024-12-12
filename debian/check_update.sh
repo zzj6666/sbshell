@@ -5,42 +5,6 @@ CYAN='\033[0;36m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-# 脚本下载目录
-SCRIPT_DIR="/etc/sing-box/scripts"
-
-echo -e "${CYAN}开始安装singbox..,尽量处于代理环境安装快速稳定!${NC}"
-
-# 检测是否处于科学环境的函数
-function check_network() {
-    echo -e "${CYAN}检测是否处于科学环境...${NC}"
-    STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 5 "https://www.google.com")
-
-    if [ "$STATUS_CODE" -eq 200 ]; then
-        echo -e "${CYAN}当前处于代理环境${NC}"
-        return 0
-    else
-        echo -e "${RED}当前不在科学环境下，请配置正确的网络后重试!${NC}"
-        return 1
-    fi
-}
-
-# 初次检测网络环境
-if ! check_network; then
-    read -rp "是否执行网络更改脚本(目前不支持armbian)?(y/n/skip): " network_choice
-    if [[ "$network_choice" =~ ^[Yy]$ ]]; then
-        bash $SCRIPT_DIR/set_network.sh
-        # 再次检测网络环境
-        if ! check_network; then
-            echo -e "${RED}网络配置更改后依然不在科学环境下，请检查网络配置!${NC}"
-            exit 1
-        fi
-    elif [[ "$network_choice" =~ ^[Ss]kip$ ]]; then
-        echo -e "${CYAN}跳过网络配置，继续下一步...${NC}"
-    else
-        exit 1
-    fi
-fi
-
 # 更新包信息
 sudo apt-get update -qq > /dev/null 2>&1
 
