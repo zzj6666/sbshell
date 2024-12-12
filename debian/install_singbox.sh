@@ -21,7 +21,7 @@ else
 
     # 提示用户是否升级系统
     while true; do
-        read -rp "是否升级系统？(y/n/skip): " upgrade_choice
+        read -rp "是否升级系统？(y/n): " upgrade_choice
         case $upgrade_choice in
             [Yy]*)
                 echo "正在升级系统，请稍候..."
@@ -31,10 +31,6 @@ else
                 ;;
             [Nn]*)
                 echo "跳过系统升级。"
-                break
-                ;;
-            [Ss]*)
-                echo "跳过系统升级，继续下一步。"
                 break
                 ;;
             *)
