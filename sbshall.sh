@@ -30,7 +30,7 @@ if ! command -v sudo &> /dev/null; then
 fi
 
 # 需要检测的依赖项列表
-DEPENDENCIES=("wget" "nft")
+DEPENDENCIES=("wget" "nftables")
 
 # 检查并安装缺失的依赖项
 for DEP in "${DEPENDENCIES[@]}"; do
