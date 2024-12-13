@@ -40,6 +40,9 @@ https://ghp.ci/https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/m
 ## Youtube视频教程：
 https://youtu.be/aoSHzRitvC8
 
+## 电报交流群：
+https://t.me/qichiyuchat
+
 ## 其他问题：
 
 **请查看[wiki](https://github.com/qichiyuhub/sbshell/wiki)**
