@@ -27,15 +27,20 @@ bash <(curl -sL https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/
 
 ### 测试版：  
 tproxy：
-https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tproxy_dev.json    
+https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tproxy_dev.json  
+
 tun：
 https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tun_dev.json  
 
+  
+
 ### 稳定版：  
 tproxy：
-https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tproxy.json    
+https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tproxy.json  
+
 tun：
 https://raw.githubusercontent.com/qichiyuhub/sbshell/refs/heads/master/config_template/config_tun.json  
+
 
 ## Youtube视频教程：
 https://youtu.be/aoSHzRitvC8
